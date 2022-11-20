@@ -1,14 +1,23 @@
 body{
     text-align: center;
     display: grid;
+    background-color: rgb(113, 185, 181);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #buttonbox{
     border: 2px solid;
-    border-color: gray;
+    border-color: rgb(219, 219, 219);
     padding: 20px;
 }
 
 #searchbox{
     padding: 20px;
+}
+
+#countrydisplay{
+    background: white;
+    margin: auto;
+    padding: 30px;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
 }
