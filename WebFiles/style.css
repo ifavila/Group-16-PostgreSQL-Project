@@ -1,0 +1,14 @@
+body{
+    text-align: center;
+    display: grid;
+}
+
+#buttonbox{
+    border: 2px solid;
+    border-color: gray;
+    padding: 20px;
+}
+
+#searchbox{
+    padding: 20px;
+}
