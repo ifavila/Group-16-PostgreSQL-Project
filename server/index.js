@@ -19,7 +19,8 @@ app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, Postgres API' })
 })
 
-app.get('/countries', db.getCountries)
+app.get('/countries/ascending', db.getCountriesAsc)
+app.get('/countries/descending', db.getCountriesDes)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

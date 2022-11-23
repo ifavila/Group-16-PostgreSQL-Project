@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,16 +9,26 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <h1 id="title">The Country Database</h1>
     <div id="buttonbox">
-        <button id="displaybutton">Display All Countries</button>
+        <div id="namesort">
+            <button id="displaybutton">Display All Countries</button>
+            <select name="alphabet-sort" id="alphabet-sort">
+                <option value="ascending">Ascending</option>
+                <option value="descending">descending</option>
+            </select>
+        </div>
     </div>
     <div id="searchbox">
         Filter: <input type="text" id="csearch" name="csearch">
     </div>
     <div id="countrydisplay">
-        <div id="default-country-text">Nothing to see here... select an option</div>
+        <ul id="country-list">
+            <li>Nothing to see here... select an option</li>
+        </ul>
     </div>
 </body>
+
 </html>
