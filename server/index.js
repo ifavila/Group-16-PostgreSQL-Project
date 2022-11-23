@@ -21,6 +21,7 @@ app.get('/', (request, response) => {
 
 app.get('/countries/ascending', db.getCountriesAsc)
 app.get('/countries/descending', db.getCountriesDes)
+app.get('/countries/region', db.getCountriesByRegion)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

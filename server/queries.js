@@ -1,4 +1,5 @@
 require('dotenv').config({path:'./.env'})
+
 const Pool = require('pg').Pool
 const pool = new Pool({
     
@@ -27,7 +28,20 @@ const getCountriesDes = (request, response) => {
         response.status(200).json(results.rows)
     })
 }
+
+const getCountriesByRegion = (request, response) => {
+    const region = request.query.region
+    pool.query('SELECT cname, region FROM country NATURAL JOIN region WHERE region = $1',
+    [region],
+    (error, results) => {
+        if(error){ 
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
 module.exports = {
     getCountriesAsc,
     getCountriesDes,
+    getCountriesByRegion,
 }
