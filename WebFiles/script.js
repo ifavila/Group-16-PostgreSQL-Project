@@ -24,9 +24,20 @@ function display(){
         .then((response) => response.json())
         .then((data) => data.forEach(country => {
             const countryItem = document.createElement("li")
+            const cInfo = document.createElement("div")
+            const cHover = document.createElement("span")
+
             countryItem.textContent = country.cname
+            cInfo.textContent = " info"
+            cHover.textContent = "Population: " + country.population + "\nBorders: " + (country.borders ? country.borders : "None")
+
             countryItem.setAttribute('class', 'cname')
+            cInfo.setAttribute('class', 'cinfo')
+            cHover.setAttribute('class', 'chover')
+
             countryDisplay.appendChild(countryItem)
+            countryItem.appendChild(cInfo)
+            cInfo.appendChild(cHover)
         },
         cList = data))
 }

@@ -12,7 +12,7 @@ const pool = new Pool({
 })
 
 const getCountriesAsc = (request, response) => {
-    pool.query('SELECT population, cname FROM country ORDER BY cname ASC', (error, results) => {
+    pool.query('SELECT * FROM country ORDER BY cname ASC', (error, results) => {
         if(error){
             throw error
         }
@@ -21,7 +21,7 @@ const getCountriesAsc = (request, response) => {
 }
 
 const getCountriesDes = (request, response) => {
-    pool.query('SELECT population, cname FROM country ORDER BY cname DESC', (error, results) => {
+    pool.query('SELECT * FROM country ORDER BY cname DESC', (error, results) => {
         if(error){
             throw error
         }
