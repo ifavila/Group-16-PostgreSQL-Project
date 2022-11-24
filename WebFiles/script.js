@@ -1,6 +1,12 @@
 const displayButton = document.getElementById("displaybutton")
 const countryDisplay = document.getElementById("country-list")
 const filterBar = document.getElementById("csearch")
+
+const regionButton = document.getElementById("region-button")
+const regionSelectOption = document.getElementById("region-sort-select")
+
+const popButton = document.getElementById("pop-button")
+
 let cList = [];
 
 function display(){
@@ -25,12 +31,41 @@ function display(){
         cList = data))
 }
 
+function regionDisplay() {
+    countryDisplay.textContent = '';
+    const selectOption = regionSelectOption.value
+    fetch(`http://localhost:3000/countries/region?region=${selectOption}`)
+        .then((response) => response.json())
+        .then((data) => data.forEach(country => {
+            const countryItem = document.createElement("li")
+            countryItem.textContent = country.cname
+            countryItem.setAttribute('class', 'cname')
+            countryDisplay.appendChild(countryItem)
+        },
+        cList = data))
+}
+
+function popDisplay(){
+    countryDisplay.textContent = ''
+    const popInput = document.getElementById("psearch").value
+    fetch(`http://localhost:3000/countries/population?population=${popInput}`)
+        .then((response) => response.json())
+        .then((data) => data.forEach(country => {
+            const countryItem = document.createElement("li")
+            countryItem.textContent = country.cname + ": " + country.population
+            countryItem.setAttribute('class', 'cname')
+            countryDisplay.appendChild(countryItem)
+        },
+        cList = data))
+}
+
 displayButton.addEventListener("click", display)
+regionButton.addEventListener("click", regionDisplay)
+popButton.addEventListener("click", popDisplay)
 
 //filter functionality
 filterBar.addEventListener("keyup", () => {
     let input = document.getElementById('csearch').value
-    console.log(input)
     let cnames = document.getElementsByClassName('cname')
     input = input.toLowerCase()
     for(let i = 0; i < cnames.length; i++){

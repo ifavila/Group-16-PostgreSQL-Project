@@ -40,8 +40,21 @@ const getCountriesByRegion = (request, response) => {
         response.status(200).json(results.rows)
     })
 }
+
+const getCountriesByPop = (request, response) => {
+    const pop = request.query.population
+    pool.query('SELECT cname, population FROM country WHERE population > $1',
+    [pop],
+    (error, results) => {
+        if(error) {
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
 module.exports = {
     getCountriesAsc,
     getCountriesDes,
     getCountriesByRegion,
+    getCountriesByPop
 }
