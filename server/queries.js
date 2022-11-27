@@ -52,9 +52,20 @@ const getCountriesByPop = (request, response) => {
         response.status(200).json(results.rows)
     })
 }
+
+const getCapitals = (request, response) => {
+    pool.query('SELECT cname, capname FROM country INNER JOIN capital ON "cname" = "countryoforigin"',
+    (error, results) => {
+        if(error){
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
 module.exports = {
     getCountriesAsc,
     getCountriesDes,
     getCountriesByRegion,
-    getCountriesByPop
+    getCountriesByPop,
+    getCapitals
 }

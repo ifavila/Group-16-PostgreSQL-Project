@@ -7,6 +7,8 @@ const regionSelectOption = document.getElementById("region-sort-select")
 
 const popButton = document.getElementById("pop-button")
 
+const capButton = document.getElementById("capital-display-button")
+
 let cList = [];
 
 function display(){
@@ -30,7 +32,7 @@ function display(){
             countryItem.textContent = country.cname
             cInfo.textContent = " info"
             cHover.textContent = "Population: " + country.population + "\nBorders: " + (country.borders ? country.borders : "None")
-
+                + "\nArea: " + country.area + " km²"
             countryItem.setAttribute('class', 'cname')
             cInfo.setAttribute('class', 'cinfo')
             cHover.setAttribute('class', 'chover')
@@ -58,6 +60,7 @@ function regionDisplay() {
 
 function popDisplay(){
     countryDisplay.textContent = ''
+    
     const popInput = document.getElementById("psearch").value
     fetch(`http://localhost:3000/countries/population?population=${popInput}`)
         .then((response) => response.json())
@@ -70,9 +73,26 @@ function popDisplay(){
         cList = data))
 }
 
+function capDisplay(){
+    countryDisplay.textContent = ''
+    const formatText = document.createElement("li")
+    formatText.style.textDecoration = "underline"
+    formatText.textContent = "Country - Capital"
+    countryDisplay.appendChild(formatText)
+    fetch('http://localhost:3000/countries/capitals')
+        .then((response) => response.json())
+        .then((data) => data.forEach(country => {
+            const countryItem = document.createElement("li")
+            countryItem.textContent = country.cname + " - " + country.capname
+            countryItem.setAttribute('class', 'cname')
+            countryDisplay.appendChild(countryItem)
+        }))
+}
+
 displayButton.addEventListener("click", display)
 regionButton.addEventListener("click", regionDisplay)
 popButton.addEventListener("click", popDisplay)
+capButton.addEventListener("click", capDisplay)
 
 //filter functionality
 filterBar.addEventListener("keyup", () => {
@@ -84,7 +104,7 @@ filterBar.addEventListener("keyup", () => {
             cnames[i].style.display = "none"
         }
         else{
-            cnames[i].style.display="list-item"
+            cnames[i].style.display="flex"
         }
     }
 })

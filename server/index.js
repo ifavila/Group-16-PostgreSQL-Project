@@ -23,6 +23,7 @@ app.get('/countries/ascending', db.getCountriesAsc)
 app.get('/countries/descending', db.getCountriesDes)
 app.get('/countries/region', db.getCountriesByRegion)
 app.get('/countries/population', db.getCountriesByPop)
+app.get('/countries/capitals', db.getCapitals)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
