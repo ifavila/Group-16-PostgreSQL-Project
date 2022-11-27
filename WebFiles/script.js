@@ -33,6 +33,7 @@ function display(){
             cInfo.textContent = " info"
             cHover.textContent = "Population: " + country.population + "\nBorders: " + (country.borders ? country.borders : "None")
                 + "\nArea: " + country.area + " km²"
+                + "\nLanguage(s): " + country.languages
             countryItem.setAttribute('class', 'cname')
             cInfo.setAttribute('class', 'cinfo')
             cHover.setAttribute('class', 'chover')
