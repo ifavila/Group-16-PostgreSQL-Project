@@ -62,10 +62,24 @@ const getCapitals = (request, response) => {
         response.status(200).json(results.rows)
     })
 }
+
+const getCountriesBySubregion = (request, response) => {
+    const subregion = request.query.subreg
+    pool.query('SELECT cname FROM country, locatedin WHERE country."countryID" = locatedin.countryid AND locatedin.subregion = $1',
+    [subregion],
+    (error, results) => {
+        if(error){
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
 module.exports = {
     getCountriesAsc,
     getCountriesDes,
     getCountriesByRegion,
     getCountriesByPop,
-    getCapitals
+    getCapitals,
+    getCountriesBySubregion,
 }

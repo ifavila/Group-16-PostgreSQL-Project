@@ -9,6 +9,9 @@ const popButton = document.getElementById("pop-button")
 
 const capButton = document.getElementById("capital-display-button")
 
+const subregButton = document.getElementById("subregion-button")
+const subregSelect = document.getElementById("subregion-sort-select")
+
 let cList = [];
 
 function display(){
@@ -90,10 +93,25 @@ function capDisplay(){
         }))
 }
 
+function subRegionDisplay() {
+    countryDisplay.textContent = '';
+    const selectOption = subregSelect.value
+    fetch(`http://localhost:3000/countries/subregion?subreg=${selectOption}`)
+        .then((response) => response.json())
+        .then((data) => data.forEach(country => {
+            const countryItem = document.createElement("li")
+            countryItem.textContent = country.cname
+            countryItem.setAttribute('class', 'cname')
+            countryDisplay.appendChild(countryItem)
+        },
+        cList = data))
+}
+
 displayButton.addEventListener("click", display)
 regionButton.addEventListener("click", regionDisplay)
 popButton.addEventListener("click", popDisplay)
 capButton.addEventListener("click", capDisplay)
+subregButton.addEventListener("click", subRegionDisplay)
 
 //filter functionality
 filterBar.addEventListener("keyup", () => {
