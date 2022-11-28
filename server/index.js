@@ -21,11 +21,17 @@ app.get('/', (request, response) => {
 
 app.get('/countries/ascending', db.getCountriesAsc)
 app.get('/countries/descending', db.getCountriesDes)
+//takes a parameter of region
 app.get('/countries/region', db.getCountriesByRegion)
+//takes a parameter of population
 app.get('/countries/population', db.getCountriesByPop)
+//takes an optional parameter of capChar
 app.get('/countries/capitals', db.getCapitals)
+//takes a parameter of subregion
 app.get('/countries/subregion', db.getCountriesBySubregion)
+//takes a parameter of language
 app.get('/countries/language', db.getCountriesByLanguage)
+//takes a parameter of region and area
 app.get('/countries/region/area', db.sortByArea)
 
 app.listen(port, () => {
