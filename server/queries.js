@@ -54,13 +54,26 @@ const getCountriesByPop = (request, response) => {
 }
 
 const getCapitals = (request, response) => {
-    pool.query('SELECT cname, capname FROM country INNER JOIN capital ON "cname" = "countryoforigin"',
-    (error, results) => {
-        if(error){
-            throw error
-        }
-        response.status(200).json(results.rows)
-    })
+    if(request.query.capChar){
+        pool.query('SELECT cname, capname FROM country INNER JOIN capital ON "cname" = "countryoforigin" WHERE capname SIMILAR TO $1',
+        [`(${request.query.capChar})%`],
+        (error, results) => {
+            if(error){
+                throw error
+            }
+            response.status(200).json(results.rows)
+        })
+    }
+    else{
+        pool.query('SELECT cname, capname FROM country INNER JOIN capital ON "cname" = "countryoforigin"',
+        (error, results) => {
+            if(error){
+                throw error
+            }
+            response.status(200).json(results.rows)
+        })
+    }
+
 }
 
 const getCountriesBySubregion = (request, response) => {
@@ -75,6 +88,38 @@ const getCountriesBySubregion = (request, response) => {
     })
 }
 
+const getCountriesByLanguage = (request, response) => {
+    const language = request.query.language
+    pool.query('SELECT cname, languages FROM country WHERE country.languages LIKE $1',
+    [`%${language}%`],
+    (error, results) => {
+        if(error){
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
+const sortByArea = (request, response) => {
+    let querystr = ""
+    if(request.query.area === 'ascending'){
+        querystr = 'SElECT cname, area, region FROM country INNER JOIN locatedin ON "countryID" = "countryid" WHERE region = $1 ORDER BY area ASC'
+    }
+    else{
+        querystr = 'SElECT cname, area, region FROM country INNER JOIN locatedin ON "countryID" = "countryid" WHERE region = $1 ORDER BY area DESC'
+    }
+    const region = request.query.region
+    pool.query(querystr,
+    [region],
+    (error, results) => {
+        if(error){
+            throw error
+        }
+        response.status(200).json(results.rows)
+    })
+    
+}
+
 module.exports = {
     getCountriesAsc,
     getCountriesDes,
@@ -82,4 +127,6 @@ module.exports = {
     getCountriesByPop,
     getCapitals,
     getCountriesBySubregion,
+    getCountriesByLanguage,
+    sortByArea
 }

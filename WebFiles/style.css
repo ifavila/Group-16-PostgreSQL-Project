@@ -46,9 +46,10 @@ li {
     margin: 0;
 }
 
-#namesort, #regionsort{
-    width: 20em;
+#namesort, #regionsort, #subregionsort, #population-sort, #capital-display, #language-sort{
+    width: 25em;
     background-color: rgb(167, 221, 217);
+    border: 1px solid rgb(255, 255, 255);
     padding: 5px;
 }
 
@@ -77,3 +78,6 @@ li {
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
+#capital-char{
+    width: 20px;
+}

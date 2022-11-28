@@ -25,6 +25,8 @@ app.get('/countries/region', db.getCountriesByRegion)
 app.get('/countries/population', db.getCountriesByPop)
 app.get('/countries/capitals', db.getCapitals)
 app.get('/countries/subregion', db.getCountriesBySubregion)
+app.get('/countries/language', db.getCountriesByLanguage)
+app.get('/countries/region/area', db.sortByArea)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

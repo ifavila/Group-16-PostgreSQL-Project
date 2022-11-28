@@ -17,7 +17,7 @@
             <button id="displaybutton">Display All Countries</button>
             <select name="alphabet-sort" id="alphabet-sort">
                 <option value="ascending">Ascending</option>
-                <option value="descending">descending</option>
+                <option value="descending">Descending</option>
             </select>
         </div>
         <div id="regionsort">
@@ -31,6 +31,11 @@
                 <option value="Antarctic">Antarctic</option>
                 <option value="Antarctic Ocean">Antarctic Ocean</option>
                 <option value="Polar">Polar</option>
+            </select>
+            <button id="area-button">Sort by area</button>
+            <select name="area-sort" id="area-sort">
+                <option value="ascending">Ascending</option>
+                <option value="descending">Descending</option>
             </select>
         </div>
         <div id="subregionsort">
@@ -68,10 +73,16 @@
         </div>
         <div id="population-sort">
             <button id="pop-button">Filter by min population: </button>
-            <input type="number" id="psearch" name="psearch" placeholder="Enter non-zero #">
+            <input type="number" id="psearch" name="psearch" placeholder="Enter non-zero #" value="0">
         </div>
         <div id="capital-display">
             <button id="capital-display-button">Display Capitals</button>
+            Sort by capital letter (optional):
+            <input type="text" id="capital-char" maxlength="1">
+        </div>
+        <div id="language-sort">
+            <button id="lang-button">Filter by language: </button>
+            <input type="text" id="lang-input" placeholder="Enter a language">
         </div>
     </div>
     <div id="searchbox">
